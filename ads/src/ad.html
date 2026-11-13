@@ -106,24 +106,24 @@
   var v = q.get("v") || "a", s = q.get("s") || "p";
   document.body.className = s + " v" + v;
 
-  var lecture = '<div class="gcard"><div class="img" style="background-image:url(img/lecture-thumb.jpg)"></div><div class="cap"><span class="tag">特典1</span><span class="kind">無料講義</span><p class="name">福祉決算の読み方</p></div></div>';
-  var report  = '<div class="gcard"><div class="img" style="background-image:url(img/report-cover-01.jpg)"></div><div class="cap"><span class="tag">特典2</span><span class="kind">リサーチ資料</span><p class="name">「今」福祉経営に<br>必要なスキル</p></div></div>';
+  var lecture = '<div class="gcard"><div class="img" style="background-image:url(img/lecture-thumb.jpg)"></div><div class="cap"><span class="tag">特典1</span><span class="kind">特別講義</span><p class="name">福祉法人の決算<br>読み方解説</p></div></div>';
+  var report  = '<div class="gcard"><div class="img" style="background-image:url(img/report-cover-01.jpg)"></div><div class="cap"><span class="tag">特典2</span><span class="kind">リサーチ資料</span><p class="name">「今」福祉経営で<br>学ぶべきスキルとは</p></div></div>';
 
   var data = {
     a: { // 不安解消型
       title: '制度・お金・手続き。<br>福祉の開業準備を、<br><span class="mk">ゼロから整理。</span>',
       visual: lecture + report, one: false,
-      sub: "無料講義とリサーチ資料を公開中", neko: "neko-desk-idea.png"
+      sub: "特別講義とリサーチ資料を公開中", neko: "neko-desk-idea.png"
     },
     b: { // 知識獲得型
       title: '福祉の決算書は、<br><span class="mk">ここを見る。</span>',
-      visual: lecture.replace('特典1', 'LINE限定').replace('<p class="name">福祉決算の読み方</p>', '<p class="name"><span style="display:inline-block">「福祉決算の</span><span style="display:inline-block">読み方」</span></p>'), one: true,
-      sub: "無料講義「福祉決算の読み方」公開中", neko: "neko-desk-writing.png"
+      visual: lecture.replace('特典1', 'LINE限定'), one: true,
+      sub: "特別講義「福祉法人の決算 読み方解説」公開中", neko: "neko-desk-writing.png"
     },
     c: { // 専門家型
       title: '現役の福祉経営者が選んだ<br><span class="mk">「今、学ぶべきこと」。</span>',
-      visual: report.replace('特典2', 'LINE限定').replace('</p></div></div>', '</p><p class="chips"><span>福祉経営者10社に調査</span><span>福祉職員80名に調査</span></p></div></div>'), one: true,
-      sub: "調査資料「『今』福祉経営に必要なスキル」公開中", neko: "neko-standing.png"
+      visual: report.replace('特典2', 'LINE限定'), one: true,
+      sub: "調査資料「『今』福祉経営で学ぶべきスキルとは」公開中", neko: "neko-standing.png"
     }
   }[v];
 

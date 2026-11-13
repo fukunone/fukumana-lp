@@ -111,12 +111,23 @@ small { font-size: .82em; font-weight: 500; opacity: .85; }
 .list li { position: relative; padding-left: 20px; font-weight: 700; line-height: 1.6; }
 .list li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 9px; height: 9px; border-radius: 2px; background: var(--green); }
 
+.list--num { counter-reset: n; }
+.list--num li { counter-increment: n; padding-left: 30px; }
+.list--num li::before { content: counter(n); top: .2em; left: 0; width: 22px; height: 22px; border-radius: 50%; color: var(--white); font-family: var(--font-head); font-weight: 900; font-size: 13px; line-height: 22px; text-align: center; }
+.list--num small { display: block; }
+
 /* ステップ */
 .steps { margin-top: 24px; display: grid; gap: 16px; }
 .step { background: var(--white); border-radius: 14px; padding: 18px; }
 .step__num { display: inline-block; padding: 0 12px; border-radius: 999px; background: var(--deep); color: var(--white); font-family: var(--font-head); font-weight: 900; font-size: 13px; letter-spacing: .06em; }
 .step__title { margin: 6px 0 4px; font-family: var(--font-head); font-weight: 900; font-size: 19px; line-height: 1.5; }
 .step__img { margin: 14px auto 0; width: 100%; max-width: 320px; border-radius: 10px; border: 1px solid var(--line); }
+
+.chat { margin: 14px auto 0; max-width: 320px; background: #8FAEDB; border-radius: 10px; padding: 14px 12px 10px; display: grid; gap: 10px; }
+.chat__msg { max-width: 88%; padding: 10px 12px; border-radius: 14px; font-size: 13px; line-height: 1.6; font-weight: 500; }
+.chat__msg--in { background: var(--white); justify-self: start; border-top-left-radius: 4px; }
+.chat__msg--out { background: #A9E88B; justify-self: end; border-top-right-radius: 4px; font-weight: 700; }
+.chat__note { font-size: 11px; color: var(--white); text-align: right; line-height: 1.4; }
 
 /* フクマナとは */
 .points { margin-top: 24px; display: grid; gap: 10px; }
@@ -155,7 +166,7 @@ small { font-size: .82em; font-weight: 500; opacity: .85; }
 .final { background: var(--deep); color: var(--white); text-align: center; }
 .final__neko { width: 110px; margin: 0 auto 12px; background: var(--band); border-radius: 50%; padding: 14px; aspect-ratio: 1; object-fit: contain; }
 .final__title { font-family: var(--font-head); font-weight: 900; font-size: 30px; line-height: 1.4; }
-.final__text { margin-top: 14px; font-weight: 700; font-size: 14px; }
+.final__text { margin-top: 14px; font-weight: 700; font-size: 16px; }
 
 /* フッター */
 .footer { padding: 40px 0 32px; font-size: 13px; }
@@ -195,7 +206,7 @@ small { font-size: .82em; font-weight: 500; opacity: .85; }
   .fv .cta { grid-column: 1; grid-row: 2; text-align: left; margin-top: 24px; }
   .fv .btn { margin: 0; }
   .fv .cta__note { padding-left: 110px; }
-  .fv__neko { top: -72px; bottom: auto; right: 0; width: 84px; }
+  .fv__neko { top: -50px; bottom: auto; right: 0; width: 68px; }
   .sec { padding: 80px 0; }
   .sec__title { font-size: 34px; }
   .sec__text { max-width: 720px; margin-left: auto; margin-right: auto; }
