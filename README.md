@@ -29,13 +29,14 @@ lp/                  LP本体（このフォルダの中身がそのまま公開
 
 ## 1. 公開手順（GitHub Pages ＋ 独自ドメイン lp.fukunone.org）
 
-### 手順A：既定のブランチを main にする（GitHub）
+### 手順A：main から自動で公開されるようにする（GitHub）
 
-LPは `main` ブランチ（公開用の本線）から公開されます。`main` は作成済みです。既定のブランチが `main` になっているかだけ確認します。
+現在は、既定のブランチ `claude/tender-allen-1ldxqu` から手動で公開しています（公開済み）。`main` に変更が入ったときに自動で公開されるようにするには、次の2つを設定します。
 
-1. https://github.com/fukunone/fukumana-lp を開く。
-2. 画面左上のブランチ名のボタンに `main` と表示されていれば、この手順は完了です。手順Bへ進みます。
-3. 別の名前（`claude/…`）が表示されている場合は、画面上部の「**Settings**」→ 左メニュー「**General**」→「**Default branch**」の切り替えボタン（⇄）を押し、`main` を選んで「**Update**」→ 確認画面で「**I understand, update the default branch.**」を押す。
+1. **既定のブランチを main にする**：「**Settings**」→ 左メニュー「**General**」→「**Default branch**」の切り替えボタン（⇄）を押し、`main` を選んで「**Update**」→ 確認画面で「**I understand, update the default branch.**」を押す。
+2. **main からの公開を許可する**：「**Settings**」→ 左メニュー「**Environments**」→「**github-pages**」を開く。「**Deployment branches and tags**」の「**Add deployment branch or tag rule**」を押し、`main` と入力して「**Add rule**」を押す。
+
+※この設定をしない間は、`main` への変更時に Actions の実行が赤（失敗）で表示されます。公開中のLPには影響しません。
 
 ### 手順B：GitHub Pages を有効にする（GitHub）
 
