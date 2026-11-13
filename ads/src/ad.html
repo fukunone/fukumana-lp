@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>フクマナ広告画像テンプレート</title>
+<!--
+  広告画像の元データ。ads/src/render.js がこのページを開いて PNG に書き出します。
+  ?v=a|b|c（案） &s=sq|p|st|ogp（サイズ）
+-->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#FCFAEF; --band:#ECF7F7; --ink:#043034; --green:#00969D; --deep:#1C5760; --line:#D5E3E3; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: var(--w); height: var(--h); overflow: hidden; }
+  body { background: var(--bg); color: var(--ink); font-family: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif; font-weight: 900; position: relative; }
+
+  /* サイズ別の設定 */
+  body.sq  { --w:1440px; --h:1440px; --pad:88px; --title:100px; --gap:40px; }
+  body.p   { --w:1440px; --h:1800px; --pad:96px; --title:120px; --gap:60px; }
+  body.st  { --w:1440px; --h:2560px; --pad:100px; --title:104px; --gap:48px; }
+  body.ogp { --w:1200px; --h:630px;  --pad:56px; --title:62px;  --gap:22px; }
+
+  .frame { position: absolute; left: 0; right: 0; top: 0; bottom: 0; padding: var(--pad); display: flex; flex-direction: column; gap: var(--gap); }
+  /* ストーリーズ：上14%・下35%・左右6%には文字やロゴを置かない（Meta公式の推奨） */
+  body.st .frame { top: 14%; bottom: 35%; padding: 20px var(--pad) 0; }
+  body.st::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 33.5%; background: var(--deep); }
+  body.st .deco { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; height: 33.5%; overflow: hidden; }
+  .deco { display: none; }
+  body.st .deco { display: block; }
+  .deco i { position: absolute; width: 520px; height: 450px; background: var(--green); opacity: .35; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+  .deco i:nth-child(1) { left: -120px; top: 120px; }
+  .deco i:nth-child(2) { right: -160px; top: 300px; opacity: .22; }
+  .deco i:nth-child(3) { left: 420px; top: 520px; opacity: .15; }
+
+  .pill { align-self: flex-start; background: var(--deep); color: #fff; border-radius: 999px; font-weight: 700; font-size: calc(var(--title) * .36); line-height: 1; padding: .55em 1.1em; }
+  .title { font-size: var(--title); line-height: 1.32; letter-spacing: .005em; margin-top: calc(var(--gap) * -.4); }
+  .title .mk { background: linear-gradient(transparent 62%, #A9DEDF 62%); }
+
+  .visual { flex: 1; min-height: 0; display: flex; gap: 36px; align-items: center; justify-content: center; }
+  .gcard { flex: 1; min-width: 0; background: #fff; border: 3px solid var(--line); border-radius: 28px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 10px 0 rgba(28,87,96,.12); }
+  .gcard .img { flex: none; width: 100%; aspect-ratio: 16 / 9; background-size: cover; background-position: center; border-bottom: 3px solid var(--line); }
+  .gcard .cap { padding: 22px 28px 26px; }
+  .gcard .tag { display: inline-block; background: var(--green); color: #fff; border-radius: 8px; font-size: 30px; line-height: 1; padding: .35em .6em; margin-right: 12px; vertical-align: middle; }
+  .gcard .kind { font-size: 32px; font-weight: 700; color: var(--deep); vertical-align: middle; }
+  .gcard .name { font-size: 44px; line-height: 1.3; margin-top: 10px; }
+  /* 1枚だけ大きく見せる（B案・C案） */
+  .visual.one .gcard { flex: none; width: 1080px; }
+  .visual.one .gcard .name { font-size: 58px; }
+  .visual.one .gcard .tag { font-size: 34px; }
+  .visual.one .gcard .kind { font-size: 36px; }
+  /* 横並びカード（正方形・ストーリーズ用：画像を左、説明を右に置く） */
+  body.sq .visual, body.st .visual { flex-direction: column; gap: 24px; }
+  body.sq .gcard, body.st .gcard { flex: none; width: 100%; height: var(--rowh); flex-direction: row; align-items: center; }
+  body.sq .gcard .img, body.st .gcard .img { width: auto; height: 100%; border-bottom: 0; border-right: 3px solid var(--line); }
+  body.sq .gcard .cap, body.st .gcard .cap { padding: 0 36px; }
+  body.sq { --rowh: 208px; } body.st { --rowh: 196px; }
+  body.sq .visual.one, body.st .visual.one { --rowh: 430px; }
+  body.sq .visual.one .gcard, body.st .visual.one .gcard { width: 100%; }
+  body.sq .visual.one .gcard .cap, body.st .visual.one .gcard .cap { flex: 1; min-width: 0; }
+  body.p.vc .visual.one .gcard { width: 900px; }
+  body.p.vc .visual.one .gcard .name { font-size: 50px; }
+  body.sq .visual.one .gcard .name, body.st .visual.one .gcard .name { font-size: 46px; }
+  .chips { display: flex; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
+  .chips span { background: var(--band); color: var(--deep); border-radius: 999px; font-size: 30px; font-weight: 700; padding: .3em .8em; white-space: nowrap; }
+
+  .bottom { display: flex; align-items: center; gap: 32px; }
+  .neko { height: 230px; flex: none; }
+  .offer { flex: 1; min-width: 0; background: var(--green); color: #fff; border-radius: 28px; padding: 26px 40px; }
+  .offer b { display: block; font-size: 68px; line-height: 1.2; }
+  .offer span { display: block; font-size: 34px; font-weight: 700; line-height: 1.4; margin-top: 4px; white-space: nowrap; overflow: hidden; }
+  .logo { height: 150px; flex: none; }
+
+  /* 正方形は縦が短いので少し詰める */
+  body.sq .neko { height: 190px; }
+  body.sq .logo { height: 128px; }
+  body.sq .offer { padding: 20px 36px; }
+  body.sq .offer b { font-size: 60px; }
+
+  /* OGP（横長） */
+  body.ogp .frame { flex-direction: row; flex-wrap: wrap; align-content: space-between; }
+  body.ogp .pill { flex: 0 0 auto; }
+  body.ogp .title { flex: 0 0 100%; margin-top: 0; }
+  body.ogp .visual { display: none; }
+  body.ogp .bottom { flex: 0 0 100%; gap: 20px; }
+  body.ogp .neko { height: 130px; }
+  body.ogp .logo { height: 96px; }
+  body.ogp .offer { padding: 14px 26px; border-radius: 18px; }
+  body.ogp .offer b { font-size: 38px; }
+  body.ogp .offer span { font-size: 21px; }
+</style>
+</head>
+<body>
+<div class="deco"><i></i><i></i><i></i></div>
+<div class="frame">
+  <p class="pill">保育・介護・障がい福祉の開業準備に</p>
+  <h1 class="title" id="title"></h1>
+  <div class="visual" id="visual"></div>
+  <div class="bottom">
+    <img class="neko" id="neko" alt="">
+    <div class="offer"><b>LINE登録で無料</b><span id="sub"></span></div>
+    <img class="logo" src="img/logo.png" alt="フクマナ">
+  </div>
+</div>
+<script>
+  var q = new URLSearchParams(location.search);
+  var v = q.get("v") || "a", s = q.get("s") || "p";
+  document.body.className = s + " v" + v;
+
+  var lecture = '<div class="gcard"><div class="img" style="background-image:url(img/lecture-thumb.jpg)"></div><div class="cap"><span class="tag">特典1</span><span class="kind">無料講義</span><p class="name">福祉決算の読み方</p></div></div>';
+  var report  = '<div class="gcard"><div class="img" style="background-image:url(img/report-cover-01.jpg)"></div><div class="cap"><span class="tag">特典2</span><span class="kind">リサーチ資料</span><p class="name">「今」福祉経営に<br>必要なスキル</p></div></div>';
+
+  var data = {
+    a: { // 不安解消型
+      title: '制度・お金・手続き。<br>福祉の開業準備を、<br><span class="mk">ゼロから整理。</span>',
+      visual: lecture + report, one: false,
+      sub: "無料講義とリサーチ資料を公開中", neko: "neko-desk-idea.png"
+    },
+    b: { // 知識獲得型
+      title: '福祉の決算書は、<br><span class="mk">ここを見る。</span>',
+      visual: lecture.replace('特典1', 'LINE限定').replace('<p class="name">福祉決算の読み方</p>', '<p class="name"><span style="display:inline-block">「福祉決算の</span><span style="display:inline-block">読み方」</span></p>'), one: true,
+      sub: "無料講義「福祉決算の読み方」公開中", neko: "neko-desk-writing.png"
+    },
+    c: { // 専門家型
+      title: '現役の福祉経営者が選んだ<br><span class="mk">「今、学ぶべきこと」。</span>',
+      visual: report.replace('特典2', 'LINE限定').replace('</p></div></div>', '</p><p class="chips"><span>福祉経営者10社に調査</span><span>福祉職員80名に調査</span></p></div></div>'), one: true,
+      sub: "調査資料「『今』福祉経営に必要なスキル」公開中", neko: "neko-standing.png"
+    }
+  }[v];
+
+  document.getElementById("title").innerHTML = data.title;
+  var vis = document.getElementById("visual");
+  vis.innerHTML = data.visual;
+  if (data.one) { vis.classList.add("one"); }
+  document.getElementById("sub").textContent = data.sub;
+  document.getElementById("neko").src = "img/" + data.neko;
+  // サブコピーが1行に収まるまで文字を小さくする
+  document.fonts.ready.then(function () {
+    var el = document.getElementById("sub"), fs = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > el.clientWidth && fs > 16) { fs -= 1; el.style.fontSize = fs + "px"; }
+  });
+  if (v === "c" && s !== "ogp") { document.getElementById("title").style.fontSize = "calc(var(--title) * .82)"; }
+</script>
+</body>
+</html>
